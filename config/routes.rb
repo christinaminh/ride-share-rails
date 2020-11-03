@@ -1,24 +1,9 @@
 Rails.application.routes.draw do
-  get 'drivers/index'
-  get 'drivers/new'
-  get 'drivers/create'
-  get 'drivers/show'
-  get 'drivers/edit'
-  get 'drivers/update'
-  get 'drivers/destroy'
-  get 'trips/index'
-  get 'trips/new'
-  get 'trips/create'
-  get 'trips/show'
-  get 'trips/edit'
-  get 'trips/update'
-  get 'trips/destroy'
-  get 'passengers/index'
-  get 'passengers/new'
-  get 'passengers/create'
-  get 'passengers/show'
-  get 'passengers/edit'
-  get 'passengers/update'
-  get 'passengers/destroy'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root to: "homepages#index" #??
+
+  resources :trips
+  resources :passengers
+  resources :drivers
+
 end
