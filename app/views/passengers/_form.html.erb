@@ -1,0 +1,15 @@
+<h1><%= form_title %></h1>
+
+<%= form_with model: @passenger do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :phone_num %>
+    <%= f.text_field :phone_num %>
+  </div>
+
+  <%= f.submit "#{action_name} Passenger", class: "passenger_button" %>
+<% end %>

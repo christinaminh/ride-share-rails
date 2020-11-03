@@ -1,2 +1,13 @@
-<h1>Passengers#index</h1>
-<p>Find me in app/views/passengers/index.html.erb</p>
+<h1>All Passengers</h1>
+
+<% if @passengers %>
+  <% @passengers.each do |passenger| %>
+    <%= passenger.name %>
+  <% end %>
+<% else %>
+  <p>No passengers in the system!</p>
+<% end %>
+
+
+<!--TODO-->
+<!--link to add new passenger-->
