@@ -32,7 +32,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
 
     if @passenger.nil?
-      redirect_to passengers_path
+      head :not_found
       return
     end
   end
@@ -41,7 +41,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
 
     if @passenger.nil?
-      redirect_to passengers_path
+      head :not_found
       return
     elsif @passenger.update(passenger_params)
       redirect_to passenger_path(@passenger)
@@ -55,11 +55,13 @@ class PassengersController < ApplicationController
   def destroy
     @passenger = Passenger.find_by(id: params[:id])
 
-    if @passenger
-      @passenger.destroy
+    if @passenger.nil?
+      head :not_found
+      return
+    elsif @passenger.destroy
+      redirect_to passengers_path
+      return
     end
-
-    redirect_to passengers_path
   end
 
   private
