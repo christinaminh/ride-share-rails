@@ -8,6 +8,14 @@ class DriversController < ApplicationController
   end
 
   def create
+    @driver = Driver.new(driver_params) #instantiate a new book
+    if @driver.save # save returns true if the database insert succeeds
+      redirect_to driver_path(@driver.id) # go to the index so we can see the task in the list
+      #
+    else
+    render :new, :bad_request # show the new task form view again
+
+    end
   end
 
   def show
@@ -20,11 +28,32 @@ class DriversController < ApplicationController
   end
 
   def edit
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      redirect_to drivers_path
+      return
+    end
   end
 
   def update
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      redirect_to root_path
+      return
+    elsif  @driver.update(driver_params)
+      redirect_to driver_path
+      return
+    else
+      render :edit
+    end
   end
 
   def destroy
+  end
+
+  private
+
+  def driver_params
+    return params.require(:driver).permit(:name, :vin, :available)
   end
 end
