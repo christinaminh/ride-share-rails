@@ -61,12 +61,31 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "request a ride" do
-      # Your code here
+        # Your code here
     end
 
     describe "complete trip" do
       # Your code here
     end
     # You may have additional methods to test here
+
+    describe "total charged" do
+      it "calculates total cost of trips for a passenger" do
+        new_passenger.save
+
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        expected_cost = trip_1.cost + trip_2.cost
+
+        expect(new_passenger.total_charged).must_equal expected_cost
+      end
+
+      it "returns 0 for a passenger with no trips" do
+        new_passenger.save
+
+        expect(new_passenger.total_charged).must_equal 0
+      end
+    end
   end
 end

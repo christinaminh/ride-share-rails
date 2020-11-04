@@ -1,2 +1,29 @@
-<h1>Passengers#show</h1>
-<p>Find me in app/views/passengers/show.html.erb</p>
+<h1>Passenger Details</h1>
+<h2><%= @passenger.name %></h2>
+
+<p>Phone Number: <%= @passenger.phone_num %></p>
+<p>Total Charged: $<%= @passenger.total_charged %></p>
+
+<section class="trip-list">
+  <h3>Trips</h3>
+  <% @passenger.trips.each do |trip| %>
+<!--    link to trip-->
+    <div><%= trip.date %></div>
+  <% end %>
+</section>
+
+
+
+<%= link_to "Edit", edit_passenger_path(@passenger) %>
+
+<%= link_to "Delete", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure you want to delete passenger: '#{@passenger.name}?'" } %>
+
+<% link_to "All Passengers", passengers_path %>
+
+
+
+<!--TODO-->
+<!--link to add new trip-->
+<!--link to home-->
+
+<!--add link to all passengers on nav bar??-->

@@ -28,6 +28,8 @@ describe DriversController do
       # Assert
       must_respond_with :success
 
+      # Asserta
+
     end
   end
 
@@ -108,7 +110,7 @@ describe DriversController do
 
     end
   end
-  
+
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
