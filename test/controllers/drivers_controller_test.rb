@@ -111,20 +111,24 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-
-      # Act
+      driver = Driver.create(name: "ida", vin: "183028034", available: true)
 
       # Assert
 
+      # Act
+      get edit_driver_path(driver.id)
+      # Assert
+      must_respond_with :success
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
 
-      # Act
+      get edit_driver_path(-1)
 
       # Assert
+      must_respond_with :redirect
 
     end
   end
@@ -135,14 +139,32 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
+      driver = Driver.create(name: "ida", vin: "183028034", available: true)
+      driver_hash = {
+          driver: {
+              name: "Sharon",
+              vin: "284924",
+              available: true,
+          },
+      }
+      driver_id = driver.id
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
+      expect {
+        patch driver_path(driver_id), params: driver_hash
+      }.wont_change "Driver.count"
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
+      find_driver = Driver.find(driver_id)
+      # pp find_driver
+      expect(find_driver.name).must_equal driver_hash[:driver][:name]
+      expect(find_driver.vin).must_equal driver_hash[:driver][:vin]
+      expect(find_driver.available).must_equal driver_hash[:driver][:available]
 
+      must_respond_with :redirect
+      must_redirect_to driver_path(find_driver.id)
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
