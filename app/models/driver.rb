@@ -32,4 +32,13 @@ class Driver < ApplicationRecord
     average_total = total / all_trips.length
     return average_total.round(2)
   end
+
+  def total_driver_trips
+    all_trips = self.trips
+    total_trips = []
+    all_trips.each do |trip|
+      total_trips << trip
+    end
+    return total_trips
+  end
 end
