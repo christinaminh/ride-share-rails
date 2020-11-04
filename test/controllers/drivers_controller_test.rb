@@ -2,13 +2,15 @@ require "test_helper"
 
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
-
+  let(:driver) {
+    Driver.create name: "Ida", vin: "183028034", available: true
+  }
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
 
-      driver = Driver.create(name: "ida", vin: "183028034", available: true)
+      # driver = Driver.create(name: "ida", vin: "183028034", available: true)
 
       # Act
       get drivers_path
@@ -33,7 +35,7 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-      driver = Driver.create(name: "ida", vin: "183028034", available: true)
+      # driver = Driver.create(name: "ida", vin: "183028034", available: true)
 
       # Act
       get driver_path(driver)
@@ -73,7 +75,7 @@ describe DriversController do
               name: "ida",
               vin: "928493",
               available: true,
-          },
+          }
       }
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
@@ -111,7 +113,7 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-      driver = Driver.create(name: "ida", vin: "183028034", available: true)
+      # driver = Driver.create(name: "ida", vin: "183028034", available: true)
 
       # Assert
 
@@ -139,7 +141,7 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
-      driver = Driver.create(name: "ida", vin: "183028034", available: true)
+      # driver = Driver.create(name: "ida", vin: "183028034", available: true)
       driver_hash = {
           driver: {
               name: "Sharon",
@@ -212,7 +214,7 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
-      driver = Driver.create(name: "ida", vin: "03828942", available: true)
+      # driver = Driver.create(name: "ida", vin: "03828942", available: true)
 
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
