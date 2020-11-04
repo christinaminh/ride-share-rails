@@ -1,2 +1,8 @@
-<h1>Drivers#show</h1>
-<p>Find me in app/views/drivers/show.html.erb</p>
+<h1>Driver Details </h1>
+<!--<p>Find me in app/views/drivers/show.html.erb</p>-->
+
+<p><strong> Name:</strong> <%= @driver[:name] %> </p>
+<p> <strong> Vin: </strong> <%= @driver[:vin] %> </p>
+<p> <strong> Availability Status: </strong> <%= @driver[:available] %></p>
+<%= link_to "Edit Driver", edit_driver_path(@driver) %>
+<!--<h4><%#= link_to "Return to home", tasks_path %></h4>-->

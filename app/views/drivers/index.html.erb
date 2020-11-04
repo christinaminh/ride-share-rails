@@ -1,2 +1,17 @@
-<h1>Drivers#index</h1>
-<p>Find me in app/views/drivers/index.html.erb</p>
+
+
+<h2> Driver List </h2>
+<ol>
+  <% @drivers.each do |driver| %>
+    <li> <%= link_to driver[:name], driver_path(driver) %>
+      <%#= link_to "Edit Task", edit_driver_path(task) %>
+      <%#= link_to "Delete Driver", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"}%>
+      <%#= link_to "Mark as Complete", complete_task_path(task), method: :patch %>
+    </li>
+  <% end %>
+
+</ol>
+<!--<p>Find me in app/views/drivers/index.html.erb</p>-->
+
+
+
