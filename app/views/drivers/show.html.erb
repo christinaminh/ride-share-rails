@@ -13,7 +13,7 @@
 <strong> List of Trips: </strong>
 <% @driver.total_driver_trips.each do |driver| %>
 <br> <% index += 1 %>
- <%= index %>. Date: <%= driver.date %>, Rating: <%= driver.rating %>, Cost: $<%=driver.cost %>
+ <%= index %>. Date: <%= driver.date %>, Rating: <%= driver.rating %>, Cost: $<%=(driver.cost.to_f)/100 %>
 <% end %>
 <br>
 <%= link_to "Edit Driver", edit_driver_path(@driver) %> |
