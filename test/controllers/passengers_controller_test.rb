@@ -98,7 +98,7 @@ describe PassengersController do
       must_respond_with :success
     end
 
-    it "responds with redirect when getting the edit page for a non-existent passenger" do
+    it "responds with 404 when getting the edit page for a non-existent passenger" do
       invalid_id = -1
 
       get edit_passenger_path(invalid_id)
@@ -132,7 +132,7 @@ describe PassengersController do
       must_redirect_to passenger_path(id)
     end
 
-    it "does not update any driver if given an invalid id, and responds with 404" do
+    it "does not update any passenger if given an invalid id, and responds with 404" do
       invalid_id = -1
 
       expect{
