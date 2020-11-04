@@ -1,9 +1,10 @@
 <h1>Driver Details </h1>
 <!--<p>Find me in app/views/drivers/show.html.erb</p>-->
 
-<p><strong> Name:</strong> <%= @driver[:name] %> </p>
-<p> <strong> Vin: </strong> <%= @driver[:vin] %> </p>
-<p> <strong> Availability Status: </strong> <%= @driver[:available] %></p>
+<p><strong> Name:</strong> <%= @driver.name %> </p>
+<p> <strong> Vin: </strong> <%= @driver.vin %> </p>
+<p> <strong> Availability Status: </strong> <%= @driver.available %></p>
 <%= link_to "Edit Driver", edit_driver_path(@driver) %> |
 <%= link_to " Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>
+<%= @driver.total_earnings %>
 <!--<h4><%#= link_to "Return to home", tasks_path %></h4>-->
