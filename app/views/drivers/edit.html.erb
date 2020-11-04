@@ -1,2 +1,19 @@
-<h1>Drivers#edit</h1>
-<p>Find me in app/views/drivers/edit.html.erb</p>
+<h3> Edit Driver: </h3>
+<%= form_with model: @driver, class: 'driver-form' do |f| %>
+  <p> Please provide the following information to edit the driver in our database: </p>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%#=f.select :driver_id, Trip.all.map{ |driver| [driver.name, driver.id]} %>
+  </div>
+  <div>
+    <%= f.label :vin %>
+    <%= f.text_field :vin %>
+  </div>
+  <div>
+    <%= f.label :available %>
+    <%= f.text_field :available %>
+  </div>
+  <%= f.submit "Edit Driver" %>
+<% end %>
+<!--<p>Find me in app/views/drivers/edit.html.erb</p>-->

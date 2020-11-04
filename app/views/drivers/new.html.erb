@@ -1,2 +1,23 @@
-<h1>Drivers#new</h1>
-<p>Find me in app/views/drivers/new.html.erb</p>
+<h3> Create Driver: </h3>
+<%= form_with model: @driver, class: 'driver-form' do |f| %>
+  <p> Please provide the following information to edit the driver in our database: </p>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :vin %>
+    <%= f.text_field :vin %>
+  </div>
+  <div>
+    <%= f.label :available %>
+    <%= f.check_box :available, checked: true %>
+  </div>
+  <%= f.submit "Create Driver" %>
+<% end %>
+
+<ul>
+  <% @driver.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
