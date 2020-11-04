@@ -9,9 +9,6 @@ describe DriversController do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
-
-      # driver = Driver.create(name: "ida", vin: "183028034", available: true)
-
       # Act
       get drivers_path
       # Assert
@@ -37,8 +34,6 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-      # driver = Driver.create(name: "ida", vin: "183028034", available: true)
-
       # Act
       get driver_path(driver)
       # Assert
@@ -143,7 +138,6 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
-      # driver = Driver.create(name: "ida", vin: "183028034", available: true)
       driver_hash = {
           driver: {
               name: "Sharon",
@@ -162,7 +156,6 @@ describe DriversController do
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
       find_driver = Driver.find(driver_id)
-      # pp find_driver
       expect(find_driver.name).must_equal driver_hash[:driver][:name]
       expect(find_driver.vin).must_equal driver_hash[:driver][:vin]
       expect(find_driver.available).must_equal driver_hash[:driver][:available]

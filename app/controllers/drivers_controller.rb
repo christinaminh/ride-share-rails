@@ -8,11 +8,11 @@ class DriversController < ApplicationController
   end
 
   def create
-    @driver = Driver.new(driver_params) #instantiate a new book
-    if @driver.save # save returns true if the database insert succeeds
-      redirect_to driver_path(@driver.id) # go to the index so we can see the task in the list
+    @driver = Driver.new(driver_params)
+    if @driver.save
+      redirect_to driver_path(@driver.id)
     else
-    render :new # show the new task form view again
+    render :new
     end
   end
 
