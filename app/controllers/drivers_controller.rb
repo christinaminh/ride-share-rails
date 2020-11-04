@@ -21,7 +21,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: driver_id)
     #
     if @driver.nil?
-      redirect_to drivers_path
+      head :not_found
     end
   end
 
@@ -55,12 +55,9 @@ class DriversController < ApplicationController
       head :not_found
       return
     end
-
     @driver.destroy
-
     redirect_to drivers_path
     return
-
   end
 
   private
