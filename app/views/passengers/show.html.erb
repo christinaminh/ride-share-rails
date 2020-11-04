@@ -2,7 +2,15 @@
 <h2><%= @passenger.name %></h2>
 
 <p>Phone Number: <%= @passenger.phone_num %></p>
+<p>Total Charged: $<%= @passenger.total_charged %></p>
 
+<section class="trip-list">
+  <h3>Trips</h3>
+  <% @passenger.trips.each do |trip| %>
+<!--    link to trip-->
+    <div><%= trip.date %></div>
+  <% end %>
+</section>
 
 
 
@@ -15,8 +23,6 @@
 
 
 <!--TODO-->
-<!--total_charged-->
-<!--list of trips-->
 <!--link to add new trip-->
 <!--link to home-->
 
