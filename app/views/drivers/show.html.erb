@@ -6,5 +6,6 @@
 <p> <strong> Availability Status: </strong> <%= @driver.available %></p>
 <%= link_to "Edit Driver", edit_driver_path(@driver) %> |
 <%= link_to " Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>
-<%= @driver.total_earnings %>
+<br> Total Earnings: <%= @driver.total_earnings %>
+<br> Average rating: <%= @driver.average_rating %>
 <!--<h4><%#= link_to "Return to home", tasks_path %></h4>-->

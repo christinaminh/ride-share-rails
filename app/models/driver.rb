@@ -19,4 +19,17 @@ class Driver < ApplicationRecord
 
     return (earnings.to_f/100).round(2)
   end
+
+  def average_rating
+    all_trips = self.trips
+    total = 0
+    all_trips.each do |trip|
+      total += trip.rating.to_f
+    end
+    if all_trips.length == 0
+      return 0
+    end
+    average_total = total / all_trips.length
+    return average_total.round(2)
+  end
 end
