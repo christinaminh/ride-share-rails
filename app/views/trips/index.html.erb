@@ -1,2 +1,13 @@
-<h1>Trips#index</h1>
-<p>Find me in app/views/trips/index.html.erb</p>
+<h1>All Trips</h1>
+
+<%= link_to "Add New Trip", new_trip_path %>
+
+<% if @trips %>
+  <%= @trips.each do |trip| %>
+    <div>
+      <%= link_to trip.date, trip_path(trip) %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No trips in the system!</p>
+<% end %>

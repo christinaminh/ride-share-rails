@@ -8,7 +8,7 @@ describe TripsController do
 
     @passenger = Passenger.create( name: "sample passenger", phone_num: "000-000-0000")
 
-    @trip = Trip.new( driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, rating: nil, cost: 1234)
+    @trip = Trip.create( driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, rating: nil, cost: 1234)
   end
 
   describe "index" do
@@ -19,7 +19,9 @@ describe TripsController do
     end
 
     it "responds with success when there are no trips saved" do
-      Trips.destroy_all
+      Trip.destroy_all
+
+      get trips_path
 
       must_respond_with :success
     end
@@ -50,18 +52,20 @@ describe TripsController do
   describe "create" do
     it "creates a new trip and redirects" do
       new_trip_hash = {
-        driver_id: @driver.id, # do we need to select a new driver if the available status toggles to false??
-        passenger_id: @passenger.id,
-        date: Date.today,
-        rating: nil,
-        cost: 1234
+        trip: {
+          driver_id: @driver.id, # do we need to select a new driver if the available status toggles to false??
+          passenger_id: @passenger.id,
+          date: "2020-11-04",
+          rating: nil,
+          cost: 1234
+        }
       }
 
       expect{
         post trips_path, params: new_trip_hash
-      }.must_change "Trips.count", 1
+      }.must_change "Trip.count", 1
 
-      created_trip = Passenger.order(created_at: :desc).first
+      created_trip = Trip.order(created_at: :desc).first
 
       expect(created_trip.driver_id).must_equal new_trip_hash[:trip][:driver_id]
       expect(created_trip.passenger_id).must_equal new_trip_hash[:trip][:passenger_id]
@@ -93,7 +97,7 @@ describe TripsController do
         trip: {
           driver_id: @driver.id,
           passenger_id: @passenger.id,
-          date: Date.today,
+          date: "2020-11-04",
           rating: 5,
           cost: 1234
         }
@@ -103,7 +107,7 @@ describe TripsController do
     it "updates an existing trip, and redirect" do
       expect{
         patch trip_path(@trip), params: updated_trip_hash
-      }.must_change "Trips.count", 1
+      }.wont_change "Trip.count"
 
       @trip.reload
 
@@ -113,13 +117,13 @@ describe TripsController do
       expect(@trip.rating).must_equal updated_trip_hash[:trip][:rating]
       expect(@trip.cost).must_equal updated_trip_hash[:trip][:cost]
 
-      must_redirect_to trip_path(updated_trip)
+      must_redirect_to trip_path(@trip)
     end
 
     it "does not update any trip if given an invalid id, and responds with 404" do
       expect{
         patch trip_path(-1), params: updated_trip_hash
-      }.wont_change "Trips.count"
+      }.wont_change "Trip.count"
 
       must_respond_with :not_found
     end

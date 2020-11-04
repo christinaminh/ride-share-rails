@@ -1,2 +1,19 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+<h1>Trip Details</h1>
+
+<ul>
+  <li>Date: <%= @trip.date %></li>
+<!--  Add link to driver after establishing nested relationship-->
+  <li>Driver: </li>
+<!--  Add link to passenger after establishing nested relationship-->
+  <li>Passenger: </li>
+  <li>Rating: <%= @trip.rating %></li>
+  <li>Cost: $<%= @trip.cost %></li>
+</ul>
+
+<%= link_to "Edit", edit_trip_path(@trip) %>
+<%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Are you sure you want to delete trip?"} %>
+
+
+
+
+
