@@ -61,13 +61,42 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "average rating" do
-      # Your code here
+      it "calculates the average rating of 2 trips" do
+
+      # arrange
+      new_driver.save
+      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+      #assert
+      expect(new_driver.average_rating).must_equal 4
+      end
+
     end
 
     describe "total earnings" do
-      # Your code here
-    end
+      it 'should calculate the total earnings of 2 or more trips' do
+        new_driver.save
+        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
 
+        #assert
+        expect(new_driver.total_earnings).must_equal 57.9
+      end
+    end
+    describe "total driver trips" do
+      it "should calculate the length of total trips" do
+        new_driver.save
+        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+
+        expect(new_driver.total_driver_trips.length).must_equal 2
+        end
+    end
     describe "can go online" do
       # Your code here
     end
