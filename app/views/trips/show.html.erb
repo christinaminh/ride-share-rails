@@ -3,21 +3,10 @@
 <ul>
   <li>Date: <%= @trip.date %></li>
 
-  <li>Driver:
-    <% if @trip.driver%>
-      <%= link_to @trip.driver.name, driver_path(@trip.driver) %>
-    <% else %>
-      "User account deleted" %>
-    <% end %>
-  </li>
+  <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
 
-  <li>Passenger:
-    <% if @trip.passenger%>
-      <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %>
-    <% else %>
-      "User account deleted" %>
-    <% end %>
-  </li>
+  <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
+
 
   <li>Rating: <%= @trip.rating %></li>
 

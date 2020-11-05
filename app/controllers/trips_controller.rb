@@ -38,8 +38,10 @@ class TripsController < ApplicationController
     if @trip.save
       # Set driver availability to false once trip is created
       driver = Driver.find_by(id: trip_params[:driver_id])
-      driver.available = false
-      driver.save
+
+      # TODO
+      # driver.available = false
+      # driver.save
 
       redirect_to trip_path(@trip)
       return
@@ -100,10 +102,9 @@ class TripsController < ApplicationController
     return params.require(:trip).permit(:driver_id, :passenger_id, :date, :rating, :cost)
   end
 
-
-  def find_available_driver
-    driver = Driver.find_by(available: true)
-
-    return driver
-  end
+  #TODO
+  # def find_available_driver
+  #   driver = Driver.find_by(available: true)
+  #   return driver
+  # end
 end
