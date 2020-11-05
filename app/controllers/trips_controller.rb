@@ -41,7 +41,7 @@ class TripsController < ApplicationController
 
     if @trip.save
       # Set driver availability to false once trip is created
-      driver = Driver.find_by(id: trip_params[:driver_id])
+      driver = @trip.driver
       driver.toggle_status
 
       redirect_to trip_path(@trip)
@@ -97,8 +97,18 @@ class TripsController < ApplicationController
     end
   end
 
-  def complete_trip
+  def complete
+    @trip = Trip.find_by(id: params[:id])
 
+    if @trip.nil?
+      head :not_found
+    else
+      driver = @trip.driver
+      driver.toggle_status
+
+      redirect_to trip_path(@trip)
+      return
+    end
   end
 
   private

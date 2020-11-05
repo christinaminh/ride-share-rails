@@ -22,13 +22,15 @@
     <li>Rating: <%= @trip.rating %></li>
     <% end %>
 
-
   <li>Cost: <%= number_to_currency(@trip.cost/100) %></li>
 </ul>
 
 <%= link_to "Edit", edit_trip_path(@trip) %>
 
-<%= link_to "Complete Trip" %>
+<% if @trip.driver.available == false %>
+  <%= link_to "Complete Trip", complete_trip_path(@trip), method: :patch, data: { confirm: "Are you sure you want to complete the trip?"} %>
+<% end %>
+
 <%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Are you sure you want to delete trip?"} %>
 
 

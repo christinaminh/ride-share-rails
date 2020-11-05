@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   end
   resources :drivers
 
+  patch '/trips/:id/complete', to: 'trips#complete', as: 'complete_trip'
 end
