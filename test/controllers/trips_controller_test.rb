@@ -190,4 +190,29 @@ describe TripsController do
     end
   end
 
+  describe "complete" do
+    it "responds with success when completing an existing trip" do
+      patch complete_trip_path(@trip)
+
+      must_respond_with :redirect
+    end
+
+    it "sets driver available status to true" do
+      driver = @trip.driver
+      driver.available = false
+      driver.save
+
+      patch complete_trip_path(@trip)
+
+      driver.reload
+
+      expect(driver.available).must_equal true
+    end
+
+    it "responds with 404 when completing a non-existent trip" do
+      patch complete_trip_path(-1)
+
+      must_respond_with :not_found
+    end
+  end
 end
