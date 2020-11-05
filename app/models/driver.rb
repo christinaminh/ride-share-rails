@@ -41,10 +41,5 @@ class Driver < ApplicationRecord
     end
     return total_trips
   end
-  #
-  # def trip_driver
-  #   all_trips = self.trips
-  #   all_trips.each do |trip|
-  #
-  # end
+
 end
