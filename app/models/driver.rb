@@ -42,4 +42,13 @@ class Driver < ApplicationRecord
     return total_trips
   end
 
+  def self.find_available_driver
+    return self.find_by(available: true)
+  end
+
+  def toggle_status
+    self.available = !self.available
+
+    return self.save
+  end
 end

@@ -15,18 +15,12 @@ class Passenger < ApplicationRecord
     return total_charged
   end
 
-  #TODO
-  def add_trip(trip)
-    # self.trips.create(trip_hash)?
-    # request_trip in TripsController??
-    self.trips << trip
-  end
-
   # def request_ride
   #
   # end
 
-  # def complete_trip
-  #
-  # end
+  def complete_trip
+    # set rating
+
+  end
 end

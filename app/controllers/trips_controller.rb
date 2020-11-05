@@ -9,26 +9,17 @@ class TripsController < ApplicationController
   end
 
   def new
-    default_date = "#{Date.today.strftime("%F")}"
-    default_cost = rand(1000...3000)
-    driver = find_available_driver
+    default_fields = Trip.default_fields
+    driver = Driver.find_available_driver
 
 
     if params[:passenger_id]
       @passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = @passenger.trips.new(
-        driver_id: driver,
-        date: default_date,
-        rating: nil,
-        cost: default_cost,
-        )
+      @trip = @passenger.trips.new(default_fields)
+      @trip.driver = driver
     else
-      @trip = Trip.new(
-        driver_id: driver,
-        date: default_date,
-        rating: nil,
-        cost: default_cost,
-        )
+      @trip = Trip.new(default_fields)
+      @trip.driver = driver
     end
   end
 
@@ -38,10 +29,7 @@ class TripsController < ApplicationController
     if @trip.save
       # Set driver availability to false once trip is created
       driver = Driver.find_by(id: trip_params[:driver_id])
-
-      # TODO
-      # driver.available = false
-      # driver.save
+      driver.toggle_status
 
       redirect_to trip_path(@trip)
       return
@@ -101,10 +89,4 @@ class TripsController < ApplicationController
   def trip_params
     return params.require(:trip).permit(:driver_id, :passenger_id, :date, :rating, :cost)
   end
-
-  #TODO
-  # def find_available_driver
-  #   driver = Driver.find_by(available: true)
-  #   return driver
-  # end
 end
