@@ -3,7 +3,7 @@
 <%= link_to "Add New Trip", new_trip_path %>
 
 <% if @trips %>
-  <%= @trips.each do |trip| %>
+  <% @trips.each do |trip| %>
     <div>
       <%= link_to trip.date, trip_path(trip) %>
     </div>

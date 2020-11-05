@@ -5,7 +5,9 @@
 <!--  Add link to driver after establishing nested relationship-->
   <li>Driver: </li>
 <!--  Add link to passenger after establishing nested relationship-->
-  <li>Passenger: </li>
+  <li>Passenger: <%= @trip.passenger.name %></li>
+
+<!--  <li>Passenger: <%#= Passenger.find_by(id: @trip.passenger_id).name %> </li>-->
   <li>Rating: <%= @trip.rating %></li>
   <li>Cost: $<%= @trip.cost %></li>
 </ul>
