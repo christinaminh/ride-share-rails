@@ -3,14 +3,12 @@
 <%= form_with model: @trip do |f| %>
   <div>
     <%= f.label :driver_id %>
-<!--    TODO add a dropdown menu after setting relationship-->
-    <%= f.text_field :driver_id %>
+    <%= f.select :driver_id, Driver.all.map { |driver| [driver.name, driver.id] } %>
   </div>
 
   <div>
     <%= f.label :passenger_id %>
-<!--    TODO add a dropdown menu after setting relationship-->
-    <%= f.text_field :passenger_id %>
+    <%= f.select :passenger_id, Passenger.all.map { |passenger| [passenger.name, passenger.id] } %>
   </div>
 
   <div>

@@ -9,28 +9,38 @@ class TripsController < ApplicationController
   end
 
   def new
+    default_date = "#{Date.today.strftime("%F")}"
+    default_cost = rand(1000...3000)
+    driver = find_available_driver
+
+
     if params[:passenger_id]
       @passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = @passenger.trips.new
+      @trip = @passenger.trips.new(
+        driver_id: driver,
+        date: default_date,
+        rating: nil,
+        cost: default_cost,
+        )
     else
-      @trip = Trip.new()
+      @trip = Trip.new(
+        driver_id: driver,
+        date: default_date,
+        rating: nil,
+        cost: default_cost,
+        )
     end
-
-    #TODO?
-    # Should we define default parameters?
-    # (
-    #   driver_id: find_available_drivers,
-    #     passenger_id: ,
-    #     date: ,
-    #     rating: 0,
-    #     cost: set_cost,
-    # )
   end
 
   def create
     @trip = Trip.new(trip_params)
 
     if @trip.save
+      # Set driver availability to false once trip is created
+      driver = Driver.find_by(id: trip_params[:driver_id])
+      driver.available = false
+      driver.save
+
       redirect_to trip_path(@trip)
       return
     else
@@ -90,7 +100,10 @@ class TripsController < ApplicationController
     return params.require(:trip).permit(:driver_id, :passenger_id, :date, :rating, :cost)
   end
 
-  #TODO?
-  # def find_available_driver
-  # end
+
+  def find_available_driver
+    driver = Driver.find_by(available: true)
+
+    return driver
+  end
 end
