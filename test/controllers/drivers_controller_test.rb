@@ -99,14 +99,25 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
+      driver_hash = {
+          driver: {
+              vin: "928493",
+              available: true,
+          }
+      }
+      driver_id = driver.id
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(driver_id), params: driver_hash
+      }.wont_change "Driver.count"
 
       # Assert
       # Check that the controller redirects
 
-    end
+      assert_template :new # show the new task form view again
+      end
   end
   
   describe "edit" do
@@ -216,6 +227,7 @@ describe DriversController do
       expect {
         patch driver_path(driver_id), params: driver_hash
       }.wont_change "Driver.count"
+
       # Assert
       # Check that the controller redirects
       must_respond_with :redirect
