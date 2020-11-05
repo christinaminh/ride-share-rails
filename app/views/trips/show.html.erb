@@ -7,8 +7,21 @@
 
   <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
 
+<!--  Form to assign rating if rating is nil -->
+    <% if @trip.rating.nil? %>
+    <%= form_with model: @trip do |f| %>
+      <li>
+        <%= f.label :rating %>
+        <%=  f.select :rating, options_for_select([nil, 1, 2, 3, 4 ,5]) %>
 
-  <li>Rating: <%= @trip.rating %></li>
+        <%= f.submit "Set Rating" %>
+      </li>
+      <% end %>
+
+    <% else %>
+    <li>Rating: <%= @trip.rating %></li>
+    <% end %>
+
 
   <li>Cost: $<%= @trip.cost %></li>
 </ul>

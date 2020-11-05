@@ -84,6 +84,10 @@ class TripsController < ApplicationController
     end
   end
 
+  def update_rating
+
+  end
+
   private
 
   def trip_params

@@ -43,7 +43,8 @@ class Driver < ApplicationRecord
   end
 
   def self.find_available_driver
-    return self.find_by(available: true)
+    available_driver = self.find_by(available: true)
+    return available_driver
   end
 
   def toggle_status

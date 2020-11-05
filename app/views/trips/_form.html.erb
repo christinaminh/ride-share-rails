@@ -19,7 +19,7 @@
 
   <div>
     <%= f.label :rating %>
-    <%= f.text_field :rating %>
+    <%=  f.select :rating, options_for_select([nil, 1, 2, 3, 4 ,5]) %>
   </div>
 
   <div>

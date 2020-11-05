@@ -16,7 +16,6 @@ class Passenger < ApplicationRecord
   end
 
   # def request_ride
-  #
   # end
 
   def complete_trip
