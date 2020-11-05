@@ -2,11 +2,25 @@
 
 <ul>
   <li>Date: <%= @trip.date %></li>
-<!--  Add link to driver after establishing nested relationship-->
-  <li>Driver: <%= @trip.driver ? @trip.driver.name : "User account deleted" %></li>
-<!--  Add link to passenger after establishing nested relationship-->
-  <li>Passenger: <%= @trip.passenger ? @trip.passenger.name : "User account deleted" %></li>
+
+  <li>Driver:
+    <% if @trip.driver%>
+      <%= link_to @trip.driver.name, driver_path(@trip.driver) %>
+    <% else %>
+      "User account deleted" %>
+    <% end %>
+  </li>
+
+  <li>Passenger:
+    <% if @trip.passenger%>
+      <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %>
+    <% else %>
+      "User account deleted" %>
+    <% end %>
+  </li>
+
   <li>Rating: <%= @trip.rating %></li>
+
   <li>Cost: $<%= @trip.cost %></li>
 </ul>
 
