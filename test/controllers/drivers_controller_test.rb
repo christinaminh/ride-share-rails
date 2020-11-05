@@ -201,11 +201,25 @@ describe DriversController do
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
 
+      #NEW TEST THAT NEEDS TO BE MERGED
+      driver_id = driver.id
+
+      driver_hash = {
+          driver: {
+              vin: "284924",
+              available: true
+          }
+      }
+
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
+      expect {
+        patch driver_path(driver_id), params: driver_hash
+      }.wont_change "Driver.count"
       # Assert
       # Check that the controller redirects
+      must_respond_with :redirect
+      must_redirect_to driver_path(driver_id)
 
     end
   end
