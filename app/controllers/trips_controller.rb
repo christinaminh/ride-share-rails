@@ -1,10 +1,20 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    if params[:passenger_id]
+      @passenger = Passenger.find_by(id: params[:passenger_id])
+      @trips = @passenger.trips
+    else
+      @trips = Trip.all
+    end
   end
 
   def new
-    @trip = Trip.new()
+    if params[:passenger_id]
+      @passenger = Passenger.find_by(id: param[:passenger_id])
+      @trip = @passenger.trips.new
+    else
+      @trip = Trip.new()
+    end
 
     #TODO?
     # Should we define default parameters?
