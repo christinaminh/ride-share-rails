@@ -2,11 +2,16 @@
 
 <ul>
   <li>Date: <%= @trip.date %></li>
-
+  <% if @trip.driver %>
   <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
-
+  <% else %>
+    <li> Driver: ID #<%= @trip.driver_id %> Deleted</li>
+    <% end %>
+  <% if @trip.passenger %>
   <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
-
+  <% else %>
+    <li> Passenger: ID #<%= @trip.passenger_id %> Deleted </li>
+  <% end %>
 <!--  Form to assign rating if rating is nil -->
     <% if @trip.rating.nil? %>
     <%= form_with model: @trip do |f| %>
