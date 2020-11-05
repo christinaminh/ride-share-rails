@@ -3,8 +3,6 @@ require "test_helper"
 describe TripsController do
   before do
     @driver = Driver.create( name: "sample driver",  vin: "A", available: true)
-    # # we might need a different driver if the available status toggles to false when creating a trip
-    # @driver2 = Driver.create( name: "another driver",  vin: "B", available: true)
 
     @passenger = Passenger.create( name: "sample passenger", phone_num: "000-000-0000")
 
@@ -24,6 +22,18 @@ describe TripsController do
       get trips_path
 
       must_respond_with :success
+    end
+
+    it "responds with success when there are trips saved for a specific passenger" do
+      get passenger_trips_path(@passenger)
+
+      must_respond_with :success
+    end
+
+    it "responds with 404 when trying to go to trips saved for a non-existent passenger" do
+      get passenger_trips_path("tacocat")
+
+      must_respond_with :not_found
     end
   end
 
@@ -47,19 +57,37 @@ describe TripsController do
 
       must_respond_with :success
     end
+
+    it "responds with success when adding new trip for an existing passenger" do
+      get new_passenger_trip_path(@passenger)
+
+      must_respond_with :success
+    end
+
+    it "responds with 404 when adding new trip for non-existent passenger" do
+      get new_passenger_trip_path("tacocat")
+
+      must_respond_with :not_found
+    end
+
   end
 
   describe "create" do
-    it "creates a new trip and redirects" do
-      new_trip_hash = {
+    let(:new_trip_hash){
+      {
         trip: {
-          driver_id: @driver.id, # do we need to select a new driver if the available status toggles to false??
-          passenger_id: @passenger.id,
+          driver_id: nil,
+          passenger_id: nil,
           date: "2020-11-04",
           rating: nil,
           cost: 1234
         }
       }
+    }
+
+    it "creates a new trip and redirects" do
+      new_trip_hash[:trip][:driver_id] = @driver.id
+      new_trip_hash[:trip][:passenger_id] = @passenger.id
 
       expect{
         post trips_path, params: new_trip_hash
@@ -74,6 +102,21 @@ describe TripsController do
       expect(created_trip.cost).must_equal new_trip_hash[:trip][:cost]
 
       must_redirect_to trip_path(created_trip)
+    end
+
+    it "changes driver availability to false" do
+      Driver.destroy_all
+
+      available_driver = Driver.create( name: "available driver",  vin: "A", available: true)
+
+      new_trip_hash[:trip][:driver_id] = available_driver.id
+      new_trip_hash[:trip][:passenger_id] = @passenger.id
+
+      post trips_path, params: new_trip_hash
+
+      available_driver.reload
+
+      expect(available_driver.available).must_equal false
     end
   end
 

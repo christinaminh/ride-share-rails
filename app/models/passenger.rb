@@ -19,7 +19,6 @@ class Passenger < ApplicationRecord
   # end
 
   def complete_trip
-    # set rating
 
   end
 end

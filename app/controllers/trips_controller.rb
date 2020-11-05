@@ -2,7 +2,14 @@ class TripsController < ApplicationController
   def index
     if params[:passenger_id]
       @passenger = Passenger.find_by(id: params[:passenger_id])
-      @trips = @passenger.trips
+
+      if @passenger.nil?
+        head :not_found
+        return
+      else
+        @trips = @passenger.trips
+      end
+
     else
       @trips = Trip.all
     end
@@ -12,11 +19,17 @@ class TripsController < ApplicationController
     default_fields = Trip.default_fields
     driver = Driver.find_available_driver
 
-
     if params[:passenger_id]
       @passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = @passenger.trips.new(default_fields)
-      @trip.driver = driver
+
+      if @passenger.nil?
+        head :not_found
+        return
+      else
+        @trip = @passenger.trips.new(default_fields)
+        @trip.driver = driver
+      end
+
     else
       @trip = Trip.new(default_fields)
       @trip.driver = driver
@@ -84,7 +97,7 @@ class TripsController < ApplicationController
     end
   end
 
-  def update_rating
+  def complete_trip
 
   end
 
