@@ -16,4 +16,10 @@
   </div>
   <%= f.submit "Edit Driver" %>
 <% end %>
+
+<ul>
+  <% @driver.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
 <!--<p>Find me in app/views/drivers/edit.html.erb</p>-->
