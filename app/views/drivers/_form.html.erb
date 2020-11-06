@@ -1,6 +1,6 @@
-<%#= render partial: "form", locals: { action_name: "Edit", form_title: "Add New Driver"} %>
-<h3> Create Driver: </h3>
-<%= form_with model: @driver, class: 'driver-form' do |f| %>
+<h1><%= form_title %></h1>
+<%= form_with model: @driver do |f| %>
+
   <p> Please provide the following information to edit the driver in our database: </p>
   <div>
     <%= f.label :name %>
@@ -12,9 +12,11 @@
   </div>
   <div>
     <%= f.label :available %>
+    <%= f.text_field :available %>
     <%= f.check_box :available, checked: true %>
+
   </div>
-  <%= f.submit "Create Driver" %>
+  <%= f.submit action_name %>
 <% end %>
 
 <ul>
