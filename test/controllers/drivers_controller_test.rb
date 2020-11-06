@@ -7,7 +7,7 @@ describe DriversController do
   }
   describe "index" do
     it "responds with success when there are many drivers saved" do
-
+      driver
       get drivers_path
 
       must_respond_with :success
@@ -73,15 +73,12 @@ describe DriversController do
               available: true,
           }
       }
-      driver_id = driver.id
 
       expect {
         post drivers_path, params: driver_hash
       }.wont_change "Driver.count"
 
       assert_template :new
-
-
     end
   end
 
