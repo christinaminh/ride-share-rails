@@ -97,8 +97,12 @@ describe Driver do
         expect(new_driver.total_driver_trips.length).must_equal 2
       end
     end
-    describe "can go online" do
-      # Your code here
+    describe "find available driver" do
+      it "can find the first available driver" do
+        new_driver.save
+        available = Driver.find_available_driver[:available]
+        expect(new_driver.available).must_equal true
+      end
     end
 
     describe "can go offline" do
