@@ -8,20 +8,36 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header><h1>RideShare Rails Project</h1>
-    <nav>
-      <ul class="navigation-links">
+  <a name="top"></a>
 
-        <li><div><%= link_to 'Drivers', drivers_path %></div></li>
-        <li><div><%= link_to 'Passengers', passengers_path %></div></li>
-        <li><div><%= link_to 'Add New Driver', new_driver_path %></div></li>
-        <li><div><%= link_to 'Add New Passenger', new_passenger_path %></div> </li>
-        <li><div><%= link_to 'Return to Homepage', homepages_path %> </div></li>
-      </ul>
-    </nav>
 
-  </header>
+
   <body>
-    <%= yield %>
+    <header>
+      <nav class="header_nav">
+        <h1><%= link_to 'RideShare Rails', homepages_path %></h1>
+        <ul class="header_nav_links">
+          <li><%= link_to 'Trips', trips_path %></li>
+          <li><%= link_to 'Drivers', drivers_path %></li>
+          <li><%= link_to 'Passengers', passengers_path %></li>
+          <li><%= link_to 'Add New Driver', new_driver_path %></li>
+          <li><%= link_to 'Add New Passenger', new_passenger_path %></li>
+          <li><%= link_to 'Return to Homepage', homepages_path %></li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <main>
+      <%= yield %>
+    </main>
+
+
+    <footer>
+      <ul class="footer-nav">
+        <li class="copy">© 2020 Ida Goitom and Christina Minh</li>
+        <li><a href="#top">Back to top</a></li>
+      </ul>
+    </footer>
   </body>
 </html>

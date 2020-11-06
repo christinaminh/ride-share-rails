@@ -17,15 +17,51 @@
 
 @import "**/*";
 
+
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  margin: 2rem 4rem;
+}
+
+header, footer {
+  flex-shrink: 0;
+  margin: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.header_nav, .header_nav_links, .footer-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+
 ul {
   list-style-type: none;
 }
 
-.navigation-links {
-  display: flex;
-  justify-content: space-between;
+header li, footer li {
+  padding-right: 2rem;
+  white-space: nowrap ;
 }
 
-#title-text a::after {
-  content: "test"
+
+
+a {
+  color: black
 }
+
