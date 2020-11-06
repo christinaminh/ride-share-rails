@@ -6,18 +6,35 @@ describe DriversController do
     Driver.create name: "Ida", vin: "183028034", available: true
   }
   describe "index" do
-    it "responds with success when there are many drivers saved" do
+    context "when there are many drivers" do
+      let(:drivers) {
+        [
+            Driver.create(name: "Ida", vin: "183028034", available: true),
+            Driver.create(name: "Jordan", vin: "abcdefg", available: true)
+        ]
+      }
 
-      get drivers_path
+      before { drivers }
 
-      must_respond_with :success
+      it "responds with success when there are many drivers saved" do
+        get drivers_path
 
+        must_respond_with :success
+      end
+
+      it "assigns drivers" do
+        get drivers_path
+
+        expect(assigns(:drivers)).must_equal drivers
+      end
     end
 
     it "responds with success when there are no drivers saved" do
       get drivers_path
 
       must_respond_with :success
+
+      expect(assigns(:drivers)).must_equal []
     end
   end
 
@@ -73,15 +90,12 @@ describe DriversController do
               available: true,
           }
       }
-      driver_id = driver.id
 
       expect {
         post drivers_path, params: driver_hash
       }.wont_change "Driver.count"
 
       assert_template :new
-
-
     end
   end
 
@@ -146,7 +160,7 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
       driver_id = driver.id
 
       driver_hash = {
