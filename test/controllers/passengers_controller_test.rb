@@ -86,6 +86,8 @@ describe PassengersController do
       expect{
         post passengers_path, params: invalid_passenger_hash
       }.wont_change "Passenger.count"
+
+      assert_template :new
     end
   end
 
@@ -156,7 +158,7 @@ describe PassengersController do
         patch passenger_path(id), params: invalid_passenger_hash
       }.wont_change "Passenger.count"
 
-      must_respond_with :redirect
+      assert_template :edit
     end
 
   end

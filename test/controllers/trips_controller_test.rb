@@ -80,7 +80,7 @@ describe TripsController do
           passenger_id: nil,
           date: "2020-11-04",
           rating: nil,
-          cost: 1234
+          cost: nil
         }
       }
     }
@@ -99,7 +99,7 @@ describe TripsController do
       expect(created_trip.passenger_id).must_equal new_trip_hash[:trip][:passenger_id]
       expect(created_trip.date).must_equal new_trip_hash[:trip][:date]
       expect(created_trip.rating).must_equal new_trip_hash[:trip][:rating]
-      expect(created_trip.cost).must_equal new_trip_hash[:trip][:cost]
+      expect(created_trip.cost).must_be :>, 0
 
       must_redirect_to trip_path(created_trip)
     end
