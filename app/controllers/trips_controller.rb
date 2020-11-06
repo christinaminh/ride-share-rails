@@ -40,16 +40,6 @@ class TripsController < ApplicationController
         @trip.driver = driver
       end
 
-    elsif params[:driver_id]
-      @driver = Driver.find_by(id: params[:driver_id])
-
-      if @driver.nil?
-        head :not_found
-        return
-      else
-        @trip = @driver.trips.new(default_fields)
-      end
-
     else
       @trip = Trip.new(default_fields)
       @trip.driver = driver
