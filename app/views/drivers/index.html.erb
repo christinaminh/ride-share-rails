@@ -1,21 +1,13 @@
 
-<p> <a href="<%= new_driver_path %>"> Add a New Driver</a></p>
-
 <h2> Driver List </h2>
-
-
 <ol>
   <% @drivers.each do |driver| %>
     <li> <%= link_to driver.name, driver_path(driver) %>
-<!-- ---- <%#= link_to "Edit Driver", edit_driver_path(driver) %> |-->
-<%#= link_to "Delete Driver", driver_path(driver), method: :delete, data: {confirm: "Are you sure?"}%>
-<%#= link_to "Add a New Driver", new_driver_path %>
 </li>
 
   <% end %>
 
 </ol>
-<!--<p>Find me in app/views/drivers/index.html.erb</p>-->
 
 
 

@@ -8,7 +8,18 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <header><h1>RideShare Rails Project</h1>
+    <nav>
+      <ul>
+      <li> <div><%= link_to 'Driver List', drivers_path %></div></li>
+        <li>  <div><%= link_to 'Passenger List', passengers_path %></div></li>
+        <li> <div><%= link_to 'Add A New Driver', new_driver_path %></div></li>
+        <li>  <div><%= link_to 'Add A New Passenger', new_passenger_path %></div> </li>
+      <li><div><%= link_to 'Return to Homepage', homepages_path %> </li>
+      </ul>
+    </nav>
 
+  </header>
   <body>
     <%= yield %>
   </body>
