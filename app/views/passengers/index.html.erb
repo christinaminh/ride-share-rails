@@ -1,13 +1,17 @@
-<h1>All Passengers</h1>
+<div class="container-content">
+  <h1>All Passengers</h1>
+  <div class="summary">
 
-<%= link_to "Add New Passenger", new_passenger_path %>
+    <%= link_to "Add New Passenger", new_passenger_path %>
 
-<% if @passengers %>
-  <% @passengers.each do |passenger| %>
-    <div>
-      <%= link_to passenger.name, passenger_path(passenger) %>
-    </div>
-  <% end %>
-<% else %>
-  <p>No passengers in the system!</p>
-<% end %>
+    <% if @passengers %>
+      <% @passengers.each do |passenger| %>
+        <div>
+          <%= link_to passenger.name, passenger_path(passenger) %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No passengers in the system!</p>
+    <% end %>
+  </div>
+</div>
