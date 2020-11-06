@@ -26,7 +26,6 @@ class TripsController < ApplicationController
   end
 
   def new
-    default_fields = Trip.default_fields
     driver = Driver.find_available_driver
 
     if params[:passenger_id]
@@ -36,18 +35,21 @@ class TripsController < ApplicationController
         head :not_found
         return
       else
-        @trip = @passenger.trips.new(default_fields)
+        @trip = @passenger.trips.new()
         @trip.driver = driver
+        @trip.set_date
       end
 
     else
-      @trip = Trip.new(default_fields)
+      @trip = Trip.new()
       @trip.driver = driver
+      @trip.set_date
     end
   end
 
   def create
     @trip = Trip.new(trip_params)
+    @trip.set_cost
 
     if @trip.save
       # Set driver availability to false once trip is created

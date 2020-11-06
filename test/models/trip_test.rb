@@ -6,7 +6,7 @@ describe Trip do
 
     @passenger = Passenger.create( name: "sample passenger", phone_num: "000-000-0000")
 
-    @trip = Trip.create( driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, rating: nil, cost: 1234)
+    @trip = Trip.create( driver_id: @driver.id, passenger_id: @passenger.id, date: "2020-11-01", rating: nil, cost: 1234)
   end
 
   it "can be instantiated" do
@@ -97,21 +97,28 @@ describe Trip do
       expect(@trip.errors.messages).must_include :cost
       expect(@trip.errors.messages[:cost]).must_equal ["must be greater than 0"]
     end
-
   end
 
-  # Tests for methods you create should go here
   describe "custom methods" do
-    describe "default fields" do
-      it "returns a hash of parameters for a new trip" do
-        expect(Trip.default_fields).must_be_kind_of Hash
+    describe "set date" do
+      it "sets the date of the trip to today" do
+        expected_date = Date.today.strftime("%F")
 
-        expect(Trip.default_fields).must_include :driver_id
-        expect(Trip.default_fields).must_include :passenger_id
-        expect(Trip.default_fields).must_include :date
-        expect(Trip.default_fields).must_include :rating
-        expect(Trip.default_fields).must_include :cost
+        @trip.set_date
+
+        expect(@trip.date).must_equal expected_date
       end
     end
+
+    describe "set cost" do
+      it "sets the cost of the trip to a random positive integer" do
+        @trip.cost = 0
+
+        @trip.set_cost
+
+        expect(@trip.cost).must_be :>, 0
+      end
+    end
+
   end
 end

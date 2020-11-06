@@ -23,8 +23,10 @@
   </div>
 
   <div>
-    <%= f.label :cost %>
-    <%= f.text_field :cost %>
+    <% if @trip.cost %>
+      <%= f.label :cost %>
+      <%= f.text_field :cost %>
+    <% end %>
   </div>
 
   <%= f.submit "#{action_name} Trip", class: "trip_button" %>
