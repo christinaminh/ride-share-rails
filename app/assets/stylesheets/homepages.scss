@@ -1,3 +1,55 @@
 // Place all the styles related to the Homepages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.homepage-stats {
+  height: 5vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.5fr 1fr;
+  white-space: nowrap;
+}
+
+.homepage-stats .trips {
+  grid-column: 1 / -1;
+  width: 100%;
+  color: white;
+  background-color: #31326f;
+}
+
+.homepage-stats * {
+  justify-self: center;
+}
+
+.homepage-stats > * {
+  padding: 2rem;
+  text-align: center
+}
+
+.homepage-stats h2 {
+  padding-bottom: 2rem;
+}
+
+.homepage-stats h3 {
+  padding-bottom: 1rem;
+}
+
+.drivers, .passengers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.drivers div, .passengers div {
+  padding: 3rem 0
+}
+
+.homepage-stats .drivers {
+  color: #31326f;
+}
+
+.homepage-stats .passengers {
+  color: #31326f;
+}

@@ -1,6 +1,48 @@
-<!--<h1>Homepage</h1>-->
+
 <% content_for :title, "Homepage" %>
-<div><%= link_to 'Driver List', drivers_path %></div>
-<div><%= link_to 'Passenger List', passengers_path %></div>
-<div><%= link_to 'Create A New Driver', new_driver_path %></div>
-<div><%= link_to 'Create A New Passenger', new_passenger_path %></div>
+
+<div class="homepage-stats">
+  <section class="trips">
+    <h2><%= Trip.all.count %> Total Trips</h2>
+  </section>
+
+
+  <section class="drivers">
+    <div>
+      <h2><%= @drivers.count %> Drivers</h2>
+      <ul>
+        <li><strong><%= Driver.where(available: true).count %></strong> available drivers</li>
+        <li><strong><%= Driver.where(available: false).count %></strong> drivers currently completing a trip </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Driver Hall of Fame</h3>
+      <ul>
+        <li><strong>The Moneymaker:</strong> <%= (@drivers.max_by { |driver| driver.total_earnings } ).name %> </li>
+        <li><strong>Driver Who's Going Places:</strong> <%= (@drivers.max_by { |driver| driver.trips.count } ).name %></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="passengers">
+    <div>
+      <h2><%= Passenger.all.count %> Passenger</h2>
+    </div>
+
+
+    <div>
+      <h3>Passenger Hall of Fame</h3>
+      <ul>
+        <li><strong>Biggest Spender:</strong> <%= (@passengers.max_by { |passenger| passenger.total_charged } ).name %> </li>
+        <li><strong>Passenger Who's Going Places:</strong> <%= (@passengers.max_by { |passenger| passenger.trips.count } ).name %></li>
+      </ul>
+    </div>
+
+  </section>
+</div>
+
+
+
+
