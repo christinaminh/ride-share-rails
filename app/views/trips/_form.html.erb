@@ -3,7 +3,7 @@
 <%= form_with model: @trip do |f| %>
   <div>
     <%= f.label :driver_id %>
-    <%= f.select :driver_id, Driver.all.map { |driver| [driver.name, driver.id] } %>
+    <%= f.select :driver_id, Driver.where(available: true).map { |driver| [driver.name, driver.id] } %>
   </div>
 
   <div>
