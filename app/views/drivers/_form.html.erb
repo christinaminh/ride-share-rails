@@ -1,26 +1,26 @@
-<h1><%= form_title %></h1>
-<%= form_with model: @driver do |f| %>
+<!--<h1><%#= form_title %></h1>-->
+<%#= form_with model: @driver do |f| %>
 
-  <p> Please provide the following information to edit the driver in our database: </p>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :vin %>
-    <%= f.text_field :vin %>
-  </div>
-  <div>
-    <%= f.label :available %>
-    <%= f.text_field :available %>
-    <%= f.check_box :available, checked: true %>
+<!--  <p> Please provide the following information to edit the driver in our database: </p>-->
+<!--  <div>-->
+    <%#= f.label :name %>
+    <%#= f.text_field :name %>
+<!--  </div>-->
+<!--  <div>-->
+    <%#= f.label :vin %>
+    <%#= f.text_field :vin %>
+<!--  </div>-->
+<!--  <div>-->
+    <%#= f.label :available %>
+    <%#= f.text_field :available %>
+    <%#= f.check_box :available, checked: #%>
 
-  </div>
-  <%= f.submit action_name %>
-<% end %>
+<!--  </div>-->
+  <%#= f.submit action_name %>
+<%# end %>
 
-<ul>
-  <% @driver.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
+<!--<ul>-->
+  <%# @driver.errors.full_messages.each do |msg| %>
+<!--    <li><%#= msg %></li>-->
+  <%# end %>
+<!--</ul>-->

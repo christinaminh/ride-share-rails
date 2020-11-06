@@ -1,4 +1,6 @@
 <%#= render partial: "form", locals: { action_name: "Edit", form_title: "Add New Driver"} %>
+<%#= render partial: "form", locals: { action_name: true, form_title: "Add New Driver"} %>
+
 <h3> Create Driver: </h3>
 <%= form_with model: @driver, class: 'driver-form' do |f| %>
   <p> Please provide the following information to edit the driver in our database: </p>
@@ -22,3 +24,4 @@
     <li><%= msg %></li>
   <% end %>
 </ul>
+
