@@ -10,20 +10,19 @@ class TripsController < ApplicationController
         @trips = @passenger.trips
       end
 
-    else
-      @trips = Trip.all
-    end
-
-    if params[:driver_id]
+    elsif params[:driver_id]
       @driver = Driver.find_by(id: params[:driver_id])
+
       if @driver.nil?
         head :not_found
       else
         @trips = @driver.trips
       end
+
     else
       @trips = Trip.all
     end
+
   end
 
   def new
@@ -41,19 +40,19 @@ class TripsController < ApplicationController
         @trip.driver = driver
       end
 
-    else
-      @trip = Trip.new(default_fields)
-      @trip.driver = driver
-    end
-
-    if params[:driver_id]
+    elsif params[:driver_id]
       @driver = Driver.find_by(id: params[:driver_id])
+
       if @driver.nil?
         head :not_found
         return
       else
         @trip = @driver.trips.new(default_fields)
       end
+
+    else
+      @trip = Trip.new(default_fields)
+      @trip.driver = driver
     end
   end
 
