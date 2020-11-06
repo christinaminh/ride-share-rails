@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :passengers do
     resources :trips, only: [:index, :new]
   end
-  resources :drivers
-
+  resources :drivers do
+    resources :trips, only: [:index, :new]
+  end
   patch '/trips/:id/complete', to: 'trips#complete', as: 'complete_trip'
 end
