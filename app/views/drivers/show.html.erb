@@ -1,20 +1,23 @@
-<h1>Driver Details </h1>
+<div class="container-content">
+  <h1>Driver Details </h1>
+   <div class="summary">
+    <p><strong> Name:</strong> <%= @driver.name %> </p>
+    <p> <strong> Vin: </strong> <%= @driver.vin %> </p>
+    <p> <strong> Availability Status: </strong> <%= @driver.available %></p>
 
-<p><strong> Name:</strong> <%= @driver.name %> </p>
-<p> <strong> Vin: </strong> <%= @driver.vin %> </p>
-<p> <strong> Availability Status: </strong> <%= @driver.available %></p>
+    <br> <strong> Total Earnings: </strong>$<%= @driver.total_earnings %>
+    <br><strong> Average rating: </strong><%= @driver.average_rating %>
+    <br>
+    <ol>
+      <strong> List of Trips: </strong>
+      <% @driver.total_driver_trips.each do |trip| %>
+      <br>
+        <li> <%= link_to trip.date, trip_path(trip.id) %> </li>
+      <% end %>
+    </ol>
 
-<br> <strong> Total Earnings: </strong><%= @driver.total_earnings %>
-<br><strong> Average rating: </strong><%= @driver.average_rating %>
-<br>
-
-<ol>
-<strong> List of Trips: </strong>
-<% @driver.total_driver_trips.each do |trip| %>
-<br>
-  <li> <%= link_to trip.id, trip_path(trip.id) %> </li>
-<% end %>
-</ol>
-<br>
-<%= link_to "Edit Driver", edit_driver_path(@driver) %> |
-<%= link_to " Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>
+    <br>
+    <%= link_to "Edit Driver", edit_driver_path(@driver) %> |
+    <%= link_to " Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>
+   </div>
+</div>

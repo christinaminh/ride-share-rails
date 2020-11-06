@@ -1,29 +1,31 @@
-<h1>Passenger Details</h1>
-<h2><%= @passenger.name %></h2>
+<div class="container-content">
+  <h1>Passenger Details</h1>
+  <div class="summary">
+  <h2><%= @passenger.name %></h2>
 
-<p>Phone Number: <%= @passenger.phone_num %></p>
-<p>Total Charged: <%= number_to_currency(@passenger.total_charged/100.00) %></p>
+  <p>Phone Number: <%= @passenger.phone_num %></p>
+  <p>Total Charged: <%= number_to_currency(@passenger.total_charged/100.00) %></p>
 
-<section class="trip-list">
-  <h3>Trips</h3>
-  <% @passenger.trips.each do |trip| %>
-    <div><%= link_to trip.date, trip_path(trip) %></div>
-  <% end %>
-</section>
-
-
-<%= link_to "Add New Trip", new_passenger_trip_path(@passenger) %>
-
-<%= link_to "Edit", edit_passenger_path(@passenger) %>
-
-<%= link_to "Delete", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure you want to delete passenger: '#{@passenger.name}?'" } %>
+  <section class="trip-list">
+    <h3>Trips</h3>
+    <% @passenger.trips.each do |trip| %>
+      <div><%= link_to trip.date, trip_path(trip) %></div>
+    <% end %>
+  </section>
 
 
-<!--add link to all passengers on nav bar??-->
-<% link_to "All Passengers", passengers_path %>
+  <%= link_to "Add New Trip", new_passenger_trip_path(@passenger) %>
+
+  <%= link_to "Edit", edit_passenger_path(@passenger) %>
+
+  <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: { confirm: "Are you sure you want to delete passenger: '#{@passenger.name}?'" } %>
 
 
+  <!--add link to all passengers on nav bar??-->
+  <% link_to "All Passengers", passengers_path %>
 
+  </div>
+</div>
 <!--TODO-->
 <!--link to home? -->
 

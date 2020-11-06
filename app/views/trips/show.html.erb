@@ -1,44 +1,45 @@
-<h1>Trip Details</h1>
-
-<ul>
-  <li>Date: <%= @trip.date %></li>
-  <% if @trip.driver %>
-  <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
-  <% else %>
-    <li> Driver: ID #<%= @trip.driver_id %> Deleted</li>
-    <% end %>
-  <% if @trip.passenger %>
-  <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
-  <% else %>
-    <li> Passenger: ID #<%= @trip.passenger_id %> Deleted </li>
-  <% end %>
-<!--  Form to assign rating if rating is nil -->
-    <% if @trip.rating.nil? %>
-    <%= form_with model: @trip do |f| %>
-      <li>
-        <%= f.label :rating %>
-        <%=  f.select :rating, options_for_select([nil, 1, 2, 3, 4 ,5]) %>
-
-        <%= f.submit "Set Rating" %>
-      </li>
+<div class="container-content">
+  <h1>Trip Details</h1>
+  <div class="summary">
+    <ul>
+      <li>Date: <%= @trip.date %></li>
+      <% if @trip.driver %>
+      <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %></li>
+      <% else %>
+        <li> Driver: ID #<%= @trip.driver_id %> Deleted</li>
+        <% end %>
+      <% if @trip.passenger %>
+      <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %></li>
+      <% else %>
+        <li> Passenger: ID #<%= @trip.passenger_id %> Deleted </li>
       <% end %>
+    <!--  Form to assign rating if rating is nil -->
+        <% if @trip.rating.nil? %>
+        <%= form_with model: @trip do |f| %>
+          <li>
+            <%= f.label :rating %>
+            <%=  f.select :rating, options_for_select([nil, 1, 2, 3, 4 ,5]) %>
 
-    <% else %>
-    <li>Rating: <%= @trip.rating %></li>
+            <%= f.submit "Set Rating" %>
+          </li>
+          <% end %>
+
+        <% else %>
+        <li>Rating: <%= @trip.rating %></li>
+        <% end %>
+
+      <li>Cost: <%= number_to_currency(@trip.cost/100.0) %></li>
+    </ul>
+
+    <%= link_to "Edit", edit_trip_path(@trip) %>
+
+    <% if @trip.driver.available == false %>
+      <%= link_to "Complete Trip", complete_trip_path(@trip), method: :patch, data: { confirm: "Are you sure you want to complete the trip?"} %>
     <% end %>
 
-  <li>Cost: <%= number_to_currency(@trip.cost/100.0) %></li>
-</ul>
+    <%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Are you sure you want to delete trip?"} %>
 
-<%= link_to "Edit", edit_trip_path(@trip) %>
-
-<% if @trip.driver.available == false %>
-  <%= link_to "Complete Trip", complete_trip_path(@trip), method: :patch, data: { confirm: "Are you sure you want to complete the trip?"} %>
-<% end %>
-
-<%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Are you sure you want to delete trip?"} %>
-
-
-
+  </div>
+</div>
 
 

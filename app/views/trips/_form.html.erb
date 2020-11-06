@@ -1,34 +1,39 @@
-<h1><%= form_title %></h1>
+<div class="container-content">
 
-<%= form_with model: @trip do |f| %>
-  <div>
-    <%= f.label :driver_id %>
-    <%= f.select :driver_id, Driver.where(available: true).map { |driver| [driver.name, driver.id] } %>
-  </div>
+  <h1><%= form_title %></h1>
+  <div class="summary">
 
-  <div>
-    <%= f.label :passenger_id %>
-    <%= f.select :passenger_id, Passenger.all.map { |passenger| [passenger.name, passenger.id] } %>
-  </div>
+    <%= form_with model: @trip do |f| %>
+      <div>
+        <%= f.label :driver_id %>
+        <%= f.select :driver_id, Driver.where(available: true).map { |driver| [driver.name, driver.id] } %>
+      </div>
 
-  <div>
-    <%= f.label :date %>
+      <div>
+        <%= f.label :passenger_id %>
+        <%= f.select :passenger_id, Passenger.all.map { |passenger| [passenger.name, passenger.id] } %>
+      </div>
 
-    <%= f.text_field :date %>
-  </div>
+      <div>
+        <%= f.label :date %>
 
-  <div>
-    <%= f.label :rating %>
-    <%=  f.select :rating, options_for_select([nil, 1, 2, 3, 4 ,5], @trip.rating) %>
-  </div>
+        <%= f.text_field :date %>
+      </div>
 
-  <div>
-    <% if @trip.cost %>
-      <%= f.label :cost %>
-      <%= f.text_field :cost %>
+      <div>
+        <%= f.label :rating %>
+        <%=  f.select :rating, options_for_select([nil, 1, 2, 3, 4 ,5], @trip.rating) %>
+      </div>
+
+      <div>
+        <% if @trip.cost %>
+          <%= f.label :cost %>
+          <%= f.text_field :cost %>
+        <% end %>
+      </div>
+
+      <%= f.submit "#{action_name} Trip", class: "trip_button" %>
+
     <% end %>
   </div>
-
-  <%= f.submit "#{action_name} Trip", class: "trip_button" %>
-
-<% end %>
+</div>

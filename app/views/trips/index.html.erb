@@ -1,13 +1,17 @@
-<h1>All Trips</h1>
+<div class="container-content">
 
-<%= link_to "Add New Trip", new_trip_path %>
+  <h1>All Trips</h1>
+  <div class="summary">
+  <%= link_to "Add New Trip", new_trip_path %>
 
-<% if @trips %>
-  <% @trips.each do |trip| %>
-    <div>
-      <%= link_to trip.date, trip_path(trip) %>
-    </div>
+  <% if @trips %>
+    <% @trips.each do |trip| %>
+      <div>
+        <%= link_to trip.date, trip_path(trip) %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No trips in the system!</p>
   <% end %>
-<% else %>
-  <p>No trips in the system!</p>
-<% end %>
+  </div>
+</div>
