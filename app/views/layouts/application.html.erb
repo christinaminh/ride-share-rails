@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RideShareRails</title>
+    <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,11 +10,12 @@
   </head>
   <header><h1>RideShare Rails Project</h1>
     <nav>
-      <ul>
-      <li> <div><%= link_to 'Driver List', drivers_path %></div></li>
-        <li>  <div><%= link_to 'Passenger List', passengers_path %></div></li>
-        <li> <div><%= link_to 'Add A New Driver', new_driver_path %></div></li>
-        <li>  <div><%= link_to 'Add A New Passenger', new_passenger_path %></div> </li>
+      <ul class="navigation-links">
+
+        <li><div><%= link_to 'Drivers', drivers_path %></div></li>
+        <li><div><%= link_to 'Passengers', passengers_path %></div></li>
+        <li><div><%= link_to 'Add New Driver', new_driver_path %></div></li>
+        <li><div><%= link_to 'Add New Passenger', new_passenger_path %></div> </li>
         <li><div><%= link_to 'Return to Homepage', homepages_path %> </div></li>
       </ul>
     </nav>
