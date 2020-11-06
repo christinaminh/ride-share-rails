@@ -47,7 +47,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger)
       return
     else #if save failed
-      redirect_to edit_passenger_path
+      render :edit
       return
     end
   end

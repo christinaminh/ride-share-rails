@@ -2,7 +2,7 @@
 <h2><%= @passenger.name %></h2>
 
 <p>Phone Number: <%= @passenger.phone_num %></p>
-<p>Total Charged: $<%= number_to_currency(@passenger.total_charged/100) %></p>
+<p>Total Charged: <%= number_to_currency(@passenger.total_charged/100) %></p>
 
 <section class="trip-list">
   <h3>Trips</h3>
