@@ -2,9 +2,16 @@
 
   <h1><%= form_title %></h1>
   <div class="summary">
+    <p> Please provide the following information: </p>
+
+    <ul>
+      <% @driver.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+
     <%= form_with model: @driver do |f| %>
 
-      <p> Please provide the following information to edit the driver in our database: </p>
       <div>
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -23,10 +30,6 @@
       </div>
         <%= f.submit action_name %>
     <% end %>
-    <ul>
-      <% @driver.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+
   </div>
 </div>

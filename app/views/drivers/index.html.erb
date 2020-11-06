@@ -1,11 +1,17 @@
+<% content_for :title, "Drivers" %>
+
 <div class="container-content">
   <h1> Driver List </h1>
   <div class="summary">
-    <ol>
-      <% @drivers.each do |driver| %>
-        <li> <%= link_to driver.name, driver_path(driver) %></li>
-      <% end %>
-    </ol>
+    <% if @drivers %>
+      <ol>
+        <% @drivers.each do |driver| %>
+          <li> <%= link_to driver.name, driver_path(driver) %></li>
+        <% end %>
+      </ol>
+    <% else %>
+      <p>No drivers in the system!</p>
+    <% end %>
   </div>
 </div>
 

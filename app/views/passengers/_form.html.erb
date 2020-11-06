@@ -2,17 +2,16 @@
 
   <h1><%= form_title %></h1>
   <div class="summary">
-    <% if @passenger.errors.any? %>
-      <ul class="errors">
-        <% @passenger.errors.each do |column, message| %>
-          <li>
-            <strong><%= column.capitalize %></strong> <%= message %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+    <p> Please provide the following information: </p>
+
+    <ul>
+      <% @passenger.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
 
     <%= form_with model: @passenger do |f| %>
+
       <div>
         <%= f.label :name %>
         <%= f.text_field :name %>

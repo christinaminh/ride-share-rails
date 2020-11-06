@@ -1,17 +1,19 @@
+<% content_for :title, "Trips" %>
+
+
 <div class="container-content">
 
-  <h1>All Trips</h1>
-  <div class="summary">
-  <%= link_to "Add New Trip", new_trip_path %>
+  <h1>Trip List</h1>
 
-  <% if @trips %>
-    <% @trips.each do |trip| %>
-      <div>
-        <%= link_to trip.date, trip_path(trip) %>
-      </div>
+  <div class="summary">
+    <% if @trips %>
+      <ol>
+        <% @trips.each do |trip| %>
+          <li><%= link_to trip.date, trip_path(trip) %></li>
+        <% end %>
+      </ol>
+    <% else %>
+      <p>No trips in the system!</p>
     <% end %>
-  <% else %>
-    <p>No trips in the system!</p>
-  <% end %>
   </div>
 </div>

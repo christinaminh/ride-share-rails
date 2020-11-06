@@ -4,6 +4,7 @@
   <div class="summary">
 
     <%= form_with model: @trip do |f| %>
+      <p> Please provide the following information: </p>
       <div>
         <%= f.label :driver_id %>
         <%= f.select :driver_id, Driver.where(available: true).map { |driver| [driver.name, driver.id] } %>

@@ -1,3 +1,6 @@
+<% content_for :title, "Trip Details" %>
+
+
 <div class="container-content">
   <h1>Trip Details</h1>
   <div class="summary">
@@ -33,7 +36,7 @@
 
     <%= link_to "Edit", edit_trip_path(@trip) %>
 
-    <% if @trip.driver.available == false %>
+    <% if @trip.driver && @trip.driver.available == false %>
       <%= link_to "Complete Trip", complete_trip_path(@trip), method: :patch, data: { confirm: "Are you sure you want to complete the trip?"} %>
     <% end %>
 
