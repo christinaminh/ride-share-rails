@@ -1,4 +1,7 @@
+<div class="container-content">
+
 <h1><%= form_title %></h1>
+  <div class="summary">
 <%= form_with model: @driver do |f| %>
 
   <p> Please provide the following information to edit the driver in our database: </p>
@@ -26,3 +29,5 @@
     <li><%= msg %></li>
   <% end %>
 </ul>
+  </div>
+</div>

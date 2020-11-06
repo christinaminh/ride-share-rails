@@ -1,5 +1,6 @@
-
-<h2> Driver List </h2>
+<div class="container-content">
+<h1> Driver List </h1>
+  <div class="summary">
 <ol>
   <% @drivers.each do |driver| %>
     <li> <%= link_to driver.name, driver_path(driver) %>
@@ -8,6 +9,7 @@
   <% end %>
 
 </ol>
-
+</div>
+</div>
 
 
