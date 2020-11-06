@@ -105,10 +105,5 @@ describe Driver do
       end
     end
 
-    describe "can go offline" do
-      # Your code here
-    end
-
-    # You may have additional methods to test
   end
 end
